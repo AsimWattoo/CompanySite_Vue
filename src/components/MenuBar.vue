@@ -2,12 +2,13 @@
     <div class="menu-container">
         <div class="logo">
             <img src="../assets/images/logo.png" alt="logo"/>
+            <p class="heading">Axontick</p>
         </div>
         <div class="menu-items-container">
-            <div class="menu-button">
+            <a class="menu-button" @click="toggle_menu" v-if="menuButtonShown">
                 <font-awesome-icon icon="bars" />
-            </div>
-            <div class="menu-items">
+            </a>
+            <div class="menu-items" :class="{'expand-anim': menuExpanded, 'collapse-anim': !menuExpanded}">
                 <div class="menu-item active">
                     Home
                 </div>
@@ -36,7 +37,37 @@
 
 <script>
 export default {
-    name: 'MenuBar'
+    name: 'MenuBar',
+    data() {
+        return {
+            menuExpanded: true,
+            menuButtonShown: false
+        }
+    },
+    mounted() {
+        window.addEventListener('resize', this.window_resized);
+        this.adjust_to_window_width();
+    },
+    methods: {
+        adjust_to_window_width() {
+            if(window.screen.width < 810)
+            {
+                this.menuExpanded = false
+                this.menuButtonShown = true
+            }
+            else
+            {
+                this.menuExpanded = true;
+                this.menuButtonShown = false;
+            }
+        },
+        toggle_menu() {
+            this.menuExpanded = !this.menuExpanded;
+        },
+        window_resized() {
+            this.adjust_to_window_width();
+        }
+    }
 }
 </script>
 
@@ -45,8 +76,7 @@ export default {
 .menu-container {
     padding: 1em 2em;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
-    background-color: black;
-    border-radius: 0 0 10px 10px;
+    background-color: transparent;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -55,9 +85,21 @@ export default {
 }
 
 .logo {
+
+    display: flex;
+    align-items: center;
+    justify-content: start;
+
     img {
         width: 50px;
         height: 50px;
+    }
+
+    .heading {
+        color: black;
+        font-size: 2.3rem;
+        margin: 0px 0.3em;
+        font-weight: 500;
     }
 }
 
@@ -71,8 +113,7 @@ export default {
 .menu-button {
     color: white;
     font-size: 25px;
-    visibility: collapse;
-    height: 0;
+    height: auto;
     margin-right: 0.5em;
 }
 
@@ -84,7 +125,7 @@ export default {
 
     .menu-item {
         font-weight: 300;
-        font-size: 25px;
+        font-size: 18px;
         padding: 8px 15px;
         border-radius: 5px;
         cursor: pointer;
@@ -147,29 +188,62 @@ export default {
     }
 }
 
-@media only screen and (max-width: 960px) {
+@keyframes expand {
+    from {top: -270px;}
+    to {top: 50px;}
+}
+
+@keyframes collapse {
+    0% {top: 50px;}
+    100% {top: -270px;}
+}
+
+@media only screen and (max-width: 810px) {
 
     .menu-container {
-        padding: 0.3em 0.5em;
+        padding: 0.6em 0.5em;
 
-        img {
-            height: 25px;
-            width: 25px;
+        .heading {
+            color: white;
+            font-size: 1.8rem;
         }
+
+    }
+
+    .expand-anim {
+        animation: expand 0.4s cubic-bezier(0.075, 0.82, 0.165, 1) both;
+    }
+
+    .collapse-anim {
+        animation: collapse 0.4s cubic-bezier(0.075, 0.82, 0.01, 1) both
     }
 
     .menu-items-container {
         width: 75%;
-    }
+        flex-direction: column;
+        justify-content: center;
+        align-items: end;
 
-    .menu-items {
-        visibility: hidden;
-        width: 0%;
-    }
+        .menu-items {
+            flex-direction: column;
+            align-items: end;
+            justify-content: center;
+            overflow: hidden;
+            position: absolute;
+            height: 270px;
 
-    .menu-button {
-        visibility: visible;
-        height: auto;
+            .menu-item {
+                margin-bottom: 0.25em;
+            }
+
+        }
+
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .heading {
+        font-size: 1rem;;
     }
 }
 

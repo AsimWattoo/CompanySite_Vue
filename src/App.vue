@@ -42,7 +42,7 @@ body {
 }
 
 .content {
-  padding: 1em;
+  padding: 0em;
 }
 
 </style>
