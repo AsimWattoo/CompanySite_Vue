@@ -221,16 +221,20 @@ export default {
     .menu-items-container {
         width: 75%;
         flex-direction: column;
-        justify-content: center;
+        justify-content: end;
         align-items: end;
 
         .menu-items {
             flex-direction: column;
-            align-items: end;
+            align-items: center;
             justify-content: center;
             overflow: hidden;
             position: absolute;
             height: 270px;
+            background-color: black;
+            width: 35%;
+            border-radius: 10px;
+            z-index: 1;
 
             .menu-item {
                 margin-bottom: 0.25em;

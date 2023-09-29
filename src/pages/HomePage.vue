@@ -20,16 +20,62 @@
                 <img src="../assets/images/cover.jpeg" alt="cover-image"/>
             </div>
         </div>
+        <div class="section">
+            <div class="section-header" id="services-section-header">
+                <h2>Our Services</h2>
+            </div>
+            <div class="section-body">
+                <ServiceCard id="card1"/>
+                <ServiceCard id="card2"/>
+                <ServiceCard id="card3"/>
+                <ServiceCard id="card4"/>
+                <ServiceCard id="card5"/>
+                <ServiceCard id="card6"/>
+                <ServiceCard id="card7"/>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
+import ServiceCard from '@/components/ServiceCard.vue';
+import {useScene} from 'vue-scenejs';
+import {inView} from 'motion'
+
+
 export default {
-    name: 'HomePage'
+    name: 'HomePage',
+    mounted() {
+        let scene = useScene({
+            '#services-section-header': {
+                0: {
+                    transform: 'translateX(-150px)',
+                    opacity: 0
+                },
+                1: {
+                    transform: 'translateX(0px)',
+                    opacity: 1,
+                }
+            }
+        }, {
+            duration: 2,
+            easing: 'linear',
+            selector: true
+        })
+        inView('#services-section-header', () => {
+            scene.play();
+        });
+
+    },
+    components: { ServiceCard}
 }
 </script>
 
 <style lang="scss" scoped>
+
+#services-section-header {
+    opacity: 0;
+}
 
 .page-header {
     display: grid;
@@ -69,13 +115,65 @@ export default {
 
 .align-justified {
     text-align: center;
-    animation: fade-in 2s linear;
+    animation: fade-in 2s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 .align-right {
     position: relative;
     text-align: right;
     animation: slide-in-from-right 2s cubic-bezier(0.075, 0.82, 0.165, 1) both;
+}
+
+.dotted-line {
+    border-width: 1px;
+    border-color: black;
+    border-style: dashed;
+}
+
+.pos-absolute {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+}
+
+.process-animation {
+    width: 100%;
+    height: 300px;
+    position: relative;
+
+    .animation-area {
+        img {
+            height: 50px;
+            width: 50px;
+            position: absolute;
+            top: 0%;
+            left: 0%;
+            background-color: white;
+        }
+    }
+}
+
+.section {
+    padding: 10px;
+    margin: 0px 10px;
+    border-top: 1px solid #dedede;
+
+    .section-header h2{
+        font-size: 2.5rem;
+        color: gray;
+        font-weight: 400;
+    }
+
+    .section-body {
+        display: grid;
+        padding: 1em;
+        grid-template-rows: repeat(2, 1fr);
+        grid-template-columns: repeat(4, 1fr);
+        grid-column-gap: 2em;
+        grid-row-gap: 2em;
+        overflow: hidden;
+        transition: all 0.2s linear;
+    }
 }
 
 @keyframes slide-in-from-left {
@@ -85,8 +183,6 @@ export default {
 
 @keyframes fade-in {
     0% {scale: 0;}
-    40% {scale: 1;}
-    60% {scale: 1.4;}
     100% {scale: 1}
 }
 
