@@ -4,7 +4,8 @@ import HomePage from './pages/HomePage'
 const routes = [
     {
         path: '/',
-        component: HomePage
+        component: HomePage,
+        name: 'home'
     }
 ]
 export const router = createRouter({
