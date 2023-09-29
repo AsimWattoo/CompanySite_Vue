@@ -7,9 +7,7 @@ const routes = [
         component: HomePage
     }
 ]
-const router = createRouter({
+export const router = createRouter({
     history: createWebHistory(),
     routes
 })
-
-export default router
