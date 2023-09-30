@@ -46,6 +46,24 @@ import {inView} from 'motion'
 export default {
     name: 'HomePage',
     mounted() {
+
+        let load_anim = useScene({
+            '.image-container > img': {
+                0: {
+                    top: '-700px'
+                },
+                1: {
+                    top: '-100px'
+                }
+            }
+        }, {
+            duration: 0.1,
+            easing: 'ease-in-out',
+            selector: true
+        });
+
+        load_anim.play();
+
         let scene = useScene({
             '#services-section-header': {
                 0: {
