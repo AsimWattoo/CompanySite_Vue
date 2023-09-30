@@ -231,7 +231,8 @@ export default {
             overflow: hidden;
             position: absolute;
             height: 270px;
-            background-color: black;
+            background-color: transparent;
+            backdrop-filter: blur(15px);
             width: 35%;
             border-radius: 10px;
             z-index: 1;

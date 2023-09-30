@@ -1,5 +1,8 @@
 <template>
     <div class="card-container" :id="id">
+        <div class="most-popular" v-if='is_popular'>
+            Popular
+        </div>
         <div class="column text" id="first-column" v-if="!flip">
             <div class="subtitle">
                 Service
@@ -45,7 +48,7 @@ import { useSceneItem } from 'vue-scenejs';
 
 export default {
     name: 'HorizontalCard',
-    props: ['id', 'flip', 'image', 'title', 'description', 'filled'],
+    props: ['id', 'flip', 'image', 'title', 'description', 'filled', 'is_popular'],
     computed: {
         imagePath() {
             if(this.image != '') {
@@ -69,7 +72,7 @@ export default {
             }
         }, {
             duration: 0.5,
-            easing: 'cubic-bezier(.25,.1,.17,1.55)',
+            easing: 'cubic-bezier(.14,.27,.47,1.33)',
             selector: `${containerId} #first-column`
         });
 
@@ -84,18 +87,29 @@ export default {
             }
         }, {
             duration: 0.5,
-            easing: 'cubic-bezier(.25,.1,.17,1.55)',
+            easing: 'cubic-bezier(.14,.27,.47,1.33)',
             selector: `${containerId} #second-column`
         });
 
+        let most_popular_item = useSceneItem({
+            0: {
+                opacity: 0,
+                transform: 'translateY(-100px)'
+            },
+            1: {
+                opacity: 1,
+                transform: 'translateY(0px)'
+            }
+        }, {
+            duration: 0.5,
+            easing: 'ease-in-out',
+            selector: `${containerId} .most-popular`
+        });
+
         inView(containerId, () => {
+            most_popular_item.play();
             sceneItem.play();
             sceneItem2.play();
-
-            return () => {
-                sceneItem.play(0);
-                sceneItem2.play(0);
-            }
         })
     }
 }
@@ -119,6 +133,22 @@ export default {
     grid-column-gap: 0px;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     width: 70%;
+    border-radius: 10px;
+    position: relative;
+
+    .most-popular {
+        position: absolute;
+        top: 0%;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 1rem;
+        font-weight: 500;
+        color: white;
+        background-color: rgb(184, 40, 229);
+        padding: 0.5em 1em;
+        border-radius: 0px 0px 5px 5px;
+        opacity: 0;
+    }
 
     img {
         width: 50%;
@@ -269,6 +299,11 @@ export default {
     .align-end {
         align-items: center !important;
     }
+
+    .most-popular {
+        position: static !important;;
+    }
+
     .card-container {
         grid-template-columns: repeat(1, 1fr);
         grid-template-rows: auto 1fr;

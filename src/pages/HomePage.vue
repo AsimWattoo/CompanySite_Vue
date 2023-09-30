@@ -26,6 +26,7 @@
             </div>
             <div class="section-body cards">
                 <HorizontalCard id="card1" image="custom-web.jpeg" title="Custom Website Development"
+                    :is_popular="true"
                     description="Tailored web development services designed to create distinctive and fully customized websites and web applications that precisely cater to the specific requirements of our clients."/>
                 <HorizontalCard id="card2" :flip="true" image="chatbot.jpeg" :filled='false' title="AI Chatbot Integration"
                     description="Enhance customer support and engagement with AI-powered chatbots. We integrate chatbot technology into your website to automate tasks and provide instant assistance."/>
@@ -38,6 +39,7 @@
                 <HorizontalCard id="card6" :flip="true" image="ux.jpeg" :filled='false' title="Crafting a User Experience (UX) Design"
                     description="Emphasizing user-centered design principles to improve user engagement, satisfaction, and conversion rates"/>
                 <HorizontalCard id="card7" image="seo.jpeg" title="Search Engine Optimization"
+                    :is_popular="true"
                     description="Improve your website's visibility on search engines like Google. Our SEO experts employ white-hat techniques to enhance your rankings, drive organic traffic, and increase conversions."/>
                 <HorizontalCard id="card8" :flip="true" image="webanalytics.jpeg" :filled='false' title="Web Analytics and Reporting"
                     description="Gain insights into user behavior and website performance through analytics tools. We help you make data-driven decisions to improve your online strategy."/>
