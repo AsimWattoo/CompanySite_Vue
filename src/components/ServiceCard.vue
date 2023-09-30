@@ -37,27 +37,23 @@ export default {
             easing: 'linear'
         });
 
-        let exit_scene = useSceneItem({
-            0: {
-                transform: 'translateY(0px)',
-                opacity: 1
-            },
-            1: {
-                transform: 'translateY(150px)',
-                opacity: 0,
-            }
-        }, {
-            duration: 0.2,
-            selector: cardId,
-            easing: 'linear'
-        });
+        // let exit_scene = useSceneItem({
+        //     0: {
+        //         transform: 'translateY(0px)',
+        //         opacity: 1
+        //     },
+        //     1: {
+        //         transform: 'translateY(150px)',
+        //         opacity: 0,
+        //     }
+        // }, {
+        //     duration: 0.2,
+        //     selector: cardId,
+        //     easing: 'linear'
+        // });
 
         inView(cardId, () => {
             enter_scene.play();
-
-            return () => {
-                exit_scene.play()
-            }
         });
     }
 }

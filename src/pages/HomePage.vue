@@ -65,7 +65,7 @@ export default {
         load_anim.play();
 
         let scene = useScene({
-            '#services-section-header': {
+            '#services-section-header h2': {
                 0: {
                     transform: 'translateX(-150px)',
                     opacity: 0
@@ -80,7 +80,7 @@ export default {
             easing: 'linear',
             selector: true
         })
-        inView('#services-section-header', () => {
+        inView('#services-section-header h2', () => {
             scene.play();
         });
 
@@ -90,10 +90,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
-#services-section-header {
-    opacity: 0;
-}
 
 .page-header {
     display: grid;
@@ -128,18 +124,18 @@ export default {
 
 .align-left {
     text-align: left;
-    animation: slide-in-from-left 2s cubic-bezier(0.075, 0.82, 0.165, 1) both;
+    animation: slide-in-from-left 1s cubic-bezier(0.075, 0.82, 0.165, 1) both;
 }
 
 .align-justified {
     text-align: center;
-    animation: fade-in 2s cubic-bezier(0.075, 0.82, 0.165, 1);
+    animation: fade-in 1s cubic-bezier(.25,.1,.87,1.61) both;
 }
 
 .align-right {
     position: relative;
     text-align: right;
-    animation: slide-in-from-right 2s cubic-bezier(0.075, 0.82, 0.165, 1) both;
+    animation: slide-in-from-right 1s cubic-bezier(0.075, 0.82, 0.165, 1) both;
 }
 
 .dotted-line {
@@ -174,12 +170,19 @@ export default {
 .section {
     padding: 10px;
     margin: 0px 10px;
-    border-top: 1px solid #dedede;
 
-    .section-header h2{
-        font-size: 2.5rem;
-        color: gray;
-        font-weight: 400;
+    .section-header {
+        overflow: hidden;
+        background-color: rgba(239, 239, 239, 0.3);
+        border-radius: 5px;
+        margin: 0px 10px;
+
+        h2 {
+            font-size: 2.5rem;
+            color: #40c6b1;
+            font-weight: 400;
+            opacity: 0;
+        }
     }
 
     .section-body {
@@ -238,6 +241,10 @@ export default {
         grid-column-end: 3;
     }
 
+    .section-body {
+        grid-template-columns: repeat(3, 1fr) !important;
+        grid-template-rows: repeat(3, 1fr) !important;
+    }
 }
 
 @media only screen and (max-width: 810px) {
@@ -295,9 +302,14 @@ export default {
     .image-container img {
         height: 500px;
     }
+
+    .section-body {
+        grid-template-columns: repeat(2, 1fr) !important;
+        grid-template-rows: repeat(4, 1fr) !important;
+    }
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 450px) {
 
     .headings-container {
         height: 400px;
@@ -305,6 +317,11 @@ export default {
 
     .image-container img {
         height: 400px;
+    }
+
+    .section-body {
+        grid-template-columns: repeat(1, 1fr) !important;
+        grid-template-rows: repeat(8, 1fr) !important;
     }
 }
 
