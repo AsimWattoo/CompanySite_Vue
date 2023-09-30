@@ -24,23 +24,25 @@
             <div class="section-header" id="services-section-header">
                 <h2>Our Services</h2>
             </div>
-            <div class="section-body">
-                <ServiceCard id="card1"/>
-                <ServiceCard id="card2"/>
-                <ServiceCard id="card3"/>
-                <ServiceCard id="card4"/>
-                <ServiceCard id="card5"/>
-                <ServiceCard id="card6"/>
-                <ServiceCard id="card7"/>
+            <div class="section-body cards">
+                <HorizontalCard id="card1" image="website.jpeg"/>
+                <HorizontalCard id="card2" :flip="true" image="ai.jpeg" :filled='true'/>
+                <HorizontalCard id="card3" image="cms.jpeg"/>
+                <HorizontalCard id="card4" :flip="true" image="website.jpeg" :filled='true'/>
+                <HorizontalCard id="card5" image="ai.jpeg"/>
+                <HorizontalCard id="card6" :flip="true" image="cms.jpeg" :filled='true'/>
+                <HorizontalCard id="card7" image="website.jpeg"/>
+                <HorizontalCard id="card8" :flip="true" image="ai.jpeg" :filled='true'/>
+                <HorizontalCard id="card9" image="cms.jpeg"/>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-import ServiceCard from '@/components/ServiceCard.vue';
 import {useScene} from 'vue-scenejs';
 import {inView} from 'motion'
+import HorizontalCard from '@/components/HorizontalCard.vue';
 
 
 export default {
@@ -85,7 +87,7 @@ export default {
         });
 
     },
-    components: { ServiceCard}
+    components: { HorizontalCard }
 }
 </script>
 
@@ -194,6 +196,12 @@ export default {
         grid-row-gap: 2em;
         overflow: hidden;
         transition: all 0.2s linear;
+
+        &.cards {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
     }
 }
 
