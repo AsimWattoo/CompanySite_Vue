@@ -102,7 +102,7 @@ export default {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: 1fr;
     grid-column-gap: 0px;
-    width: 80%;
+    width: 100%;
 
     img {
         height: 300px;
@@ -207,5 +207,21 @@ export default {
             grid-row-gap: 10px;
         }
     }
+
+@media only screen and (max-width: 400px) {
+    .card-container {
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        grid-row-gap: 10px;
+    }
+
+    .column {
+        padding: 0.5em !important;
+    }
+
+    .heading {
+        font-size: 1.2rem;
+    }
+}
 
 </style>
