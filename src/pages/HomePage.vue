@@ -25,15 +25,22 @@
                 <h2>Our Services</h2>
             </div>
             <div class="section-body cards">
-                <HorizontalCard id="card1" image="website.jpeg"/>
-                <HorizontalCard id="card2" :flip="true" image="ai.jpeg" :filled='true'/>
-                <HorizontalCard id="card3" image="cms.jpeg"/>
-                <HorizontalCard id="card4" :flip="true" image="website.jpeg" :filled='true'/>
-                <HorizontalCard id="card5" image="ai.jpeg"/>
-                <HorizontalCard id="card6" :flip="true" image="cms.jpeg" :filled='true'/>
-                <HorizontalCard id="card7" image="website.jpeg"/>
-                <HorizontalCard id="card8" :flip="true" image="ai.jpeg" :filled='true'/>
-                <HorizontalCard id="card9" image="cms.jpeg"/>
+                <HorizontalCard id="card1" image="custom-web.jpeg" title="Custom Website Development"
+                    description="Tailored web development services designed to create distinctive and fully customized websites and web applications that precisely cater to the specific requirements of our clients."/>
+                <HorizontalCard id="card2" :flip="true" image="chatbot.jpeg" :filled='false' title="AI Chatbot Integration"
+                    description="Enhance customer support and engagement with AI-powered chatbots. We integrate chatbot technology into your website to automate tasks and provide instant assistance."/>
+                <HorizontalCard id="card3" image="api.jpeg" title="API Integration"
+                    description="Developing and integrating APIs to facilitate seamless data exchange and functionality across various web applications and systems."/>
+                <HorizontalCard id="card4" :flip="true" image="cms.jpeg" :filled='false' title="Content Management System"
+                    description="We specialize in crafting and tailoring CMS platforms such as WordPress, Drupal, or Joomla to empower seamless content updates and effortless site management."/>
+                <HorizontalCard id="card5" image="pwa.jpeg" title="Next Gen Progressive Web Apps (PWA)"
+                    description="Creating PWAs that bring together the finest elements of web and mobile app experiences, encompassing offline functionality and push notifications."/>
+                <HorizontalCard id="card6" :flip="true" image="ux.jpeg" :filled='false' title="Crafting a User Experience (UX) Design"
+                    description="Emphasizing user-centered design principles to improve user engagement, satisfaction, and conversion rates"/>
+                <HorizontalCard id="card7" image="seo.jpeg" title="Search Engine Optimization"
+                    description="Improve your website's visibility on search engines like Google. Our SEO experts employ white-hat techniques to enhance your rankings, drive organic traffic, and increase conversions."/>
+                <HorizontalCard id="card8" :flip="true" image="webanalytics.jpeg" :filled='false' title="Web Analytics and Reporting"
+                    description="Gain insights into user behavior and website performance through analytics tools. We help you make data-driven decisions to improve your online strategy."/>
             </div>
         </div>
     </div>
@@ -69,17 +76,17 @@ export default {
         let scene = useScene({
             '#services-section-header h2': {
                 0: {
-                    transform: 'translateX(-150px)',
+                    transform: 'translateY(150px)',
                     opacity: 0
                 },
                 1: {
-                    transform: 'translateX(0px)',
+                    transform: 'translateY(0px)',
                     opacity: 1,
                 }
             }
         }, {
-            duration: 2,
-            easing: 'linear',
+            duration: 0.1,
+            easing: 'ease',
             selector: true
         })
         inView('#services-section-header h2', () => {
@@ -175,13 +182,13 @@ export default {
 
     .section-header {
         overflow: hidden;
-        background-color: rgba(239, 239, 239, 0.3);
+        background-color: rgba(64, 198, 177, 1);
         border-radius: 5px;
         margin: 0px 10px;
 
         h2 {
             font-size: 2.5rem;
-            color: #40c6b1;
+            color: white;
             font-weight: 400;
             opacity: 0;
         }
