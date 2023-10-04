@@ -243,7 +243,6 @@ export default {
 
     .section-body {
         grid-template-columns: repeat(3, 1fr) !important;
-        grid-template-rows: repeat(3, 1fr) !important;
     }
 }
 
@@ -305,7 +304,6 @@ export default {
 
     .section-body {
         grid-template-columns: repeat(2, 1fr) !important;
-        grid-template-rows: repeat(4, 1fr) !important;
     }
 }
 
@@ -321,7 +319,6 @@ export default {
 
     .section-body {
         grid-template-columns: repeat(1, 1fr) !important;
-        grid-template-rows: repeat(8, 1fr) !important;
     }
 }
 
