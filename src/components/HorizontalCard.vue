@@ -132,7 +132,7 @@ export default {
     overflow: hidden;
     grid-column-gap: 0px;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-    width: 70%;
+    width: 100%;
     border-radius: 10px;
     position: relative;
 

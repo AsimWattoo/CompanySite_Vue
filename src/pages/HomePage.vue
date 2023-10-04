@@ -21,9 +21,7 @@
             </div>
         </div>
         <div class="section">
-            <div class="section-header" id="services-section-header">
-                <h2>Our Services</h2>
-            </div>
+            <SectionHeader heading="Our Services" id="services"/>
             <div class="section-body cards">
                 <HorizontalCard id="card1" image="custom-web.jpeg" title="Custom Website Development"
                     :is_popular="true"
@@ -45,13 +43,28 @@
                     description="Gain insights into user behavior and website performance through analytics tools. We help you make data-driven decisions to improve your online strategy."/>
             </div>
         </div>
+
+        <div class="section">
+            <SectionHeader heading="Why Us?" id="why-us"/>
+            <div class="section-body">
+                <ServiceCard id="s1" title="Team of Experienced Professionals" icon="people-group"
+                    description="We have experienced and dedicated professionals with over 500 hours of development"/>
+                <ServiceCard id="s2" icon="clock" title="On Time Delivery"
+                    description="Over 90% of our projects are delivered on time as we value your time and money"/>
+                <ServiceCard id="s3" icon="face-smile" title="50+ Happy Customers"
+                    description="We have over 50+ happy customers from multiple countries"/>
+                <ServiceCard id="s4" icon="phone" title="24/7 Availability"
+                    description="We understand your need and provide consultation and report 24/7"/>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
 import {useScene} from 'vue-scenejs';
-import {inView} from 'motion'
 import HorizontalCard from '@/components/HorizontalCard.vue';
+import SectionHeader from '@/components/SectionHeader.vue';
+import ServiceCard from '@/components/ServiceCard.vue';
 
 
 export default {
@@ -68,35 +81,15 @@ export default {
                 }
             }
         }, {
-            duration: 0.1,
+            duration: 0.2,
             easing: 'ease-in-out',
             selector: true
         });
 
         load_anim.play();
 
-        let scene = useScene({
-            '#services-section-header h2': {
-                0: {
-                    transform: 'translateY(150px)',
-                    opacity: 0
-                },
-                1: {
-                    transform: 'translateY(0px)',
-                    opacity: 1,
-                }
-            }
-        }, {
-            duration: 0.1,
-            easing: 'ease',
-            selector: true
-        })
-        inView('#services-section-header h2', () => {
-            scene.play();
-        });
-
     },
-    components: { HorizontalCard }
+    components: { HorizontalCard, SectionHeader, ServiceCard }
 }
 </script>
 
@@ -181,29 +174,19 @@ export default {
 .section {
     padding: 10px;
     margin: 0px 10px;
-
-    .section-header {
-        overflow: hidden;
-        background-color: rgba(64, 198, 177, 1);
-        border-radius: 5px;
-        margin: 0px 10px;
-
-        h2 {
-            font-size: 2.5rem;
-            color: white;
-            font-weight: 400;
-            opacity: 0;
-        }
-    }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     .section-body {
         display: grid;
         padding: 1em;
-        grid-template-rows: repeat(2, 1fr);
+        grid-auto-rows: auto;
         grid-template-columns: repeat(4, 1fr);
         grid-column-gap: 2em;
         grid-row-gap: 2em;
         overflow: hidden;
+        width: 70%;
         transition: all 0.2s linear;
 
         &.cards {
