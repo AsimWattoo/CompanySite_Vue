@@ -71,7 +71,7 @@ export default {
                 transform: 'translateX(0px)'
             }
         }, {
-            duration: 0.5,
+            duration: 0.4,
             easing: 'cubic-bezier(.14,.27,.47,1.33)',
             selector: `${containerId} #first-column`
         });
@@ -101,7 +101,7 @@ export default {
                 transform: 'translateY(0px)'
             }
         }, {
-            duration: 0.5,
+            duration: 0.4,
             easing: 'ease-in-out',
             selector: `${containerId} .most-popular`
         });
@@ -116,6 +116,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "@/assets/sass/style.scss";
 
 .align-start {
     align-items: start !important;
@@ -144,7 +145,7 @@ export default {
         font-size: 1rem;
         font-weight: 500;
         color: white;
-        background-color: rgb(184, 40, 229);
+        background-color: $color-secondary;
         padding: 0.5em 1em;
         border-radius: 0px 0px 5px 5px;
         opacity: 0;
@@ -156,7 +157,7 @@ export default {
     }
 
     .btn {
-        border: 1px solid #40c6b1;
+        border: 1px solid $color-primary;
         border-radius: 5px;
         margin: 1em 0em;
         padding: 0.5em 1em;
@@ -175,7 +176,7 @@ export default {
         right: -20%;
         height: 100%;
         width: 0%;
-        background-color: #40c6b1;
+        background-color: $color-primary;
         transition: all 0.2s linear;
         z-index: -1;
         transform: skewX(45deg);
@@ -188,7 +189,7 @@ export default {
         left: -20%;
         height: 100%;
         width: 0%;
-        background-color: #40c6b1;
+        background-color: $color-primary;
         transition: all 0.2s linear;
         z-index: -1;
         transform: skewX(45deg);
@@ -212,13 +213,13 @@ export default {
         opacity: 0;
 
         &.filled {
-            background-color: #40c6b1;
+            background-color: $color-primary;
         }
 
         &.text {
 
             &.filled {
-                background-color: #40c6b1;
+                background-color: $color-primary;
                 color: white;
             }
 
@@ -252,7 +253,7 @@ export default {
     .subtitle {
         font-size: 1.2rem;
         font-weight: 600;
-        color: #40c6b1;
+        color: $color-primary;
         position: relative;
 
         &::before {
@@ -262,7 +263,7 @@ export default {
             left: -90%;
             width: 52px;
             height: 5px;
-            background-color: #40c6b1;
+            background-color: $color-primary;
             transition: all 0.3s linear;
         }
 
@@ -273,7 +274,7 @@ export default {
             right: -90%;
             width: 50px;
             height: 5px;
-            background-color: #40c6b1;
+            background-color: $color-primary;
             transition: all 0.3s linear;
         }
     }

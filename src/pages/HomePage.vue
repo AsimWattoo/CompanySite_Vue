@@ -48,13 +48,53 @@
             <SectionHeader heading="Why Us?" id="why-us"/>
             <div class="section-body">
                 <ServiceCard id="s1" title="Team of Experienced Professionals" icon="people-group"
-                    description="We have experienced and dedicated professionals with over 500 hours of development"/>
+                    description="We have experienced and dedicated professionals with over 500 hours of development experience"
+                    icon_color="#40c6b1" icon_background_color="rgb(64, 198, 177, 0.2)"/>
                 <ServiceCard id="s2" icon="clock" title="On Time Delivery"
-                    description="Over 90% of our projects are delivered on time as we value your time and money"/>
+                    description="Over 90% of our projects are delivered on time as we value your time and money"
+                    icon_color="rgb(247, 180, 0)" icon_background_color="rgb(247, 180, 0, 0.2)"/>
                 <ServiceCard id="s3" icon="face-smile" title="50+ Happy Customers"
-                    description="We have over 50+ happy customers from multiple countries"/>
+                    description="We have over 50+ happy customers from multiple countries"
+                    icon_color="#32cd32" icon_background_color="rgb(50, 205, 50, 0.2)"/>
                 <ServiceCard id="s4" icon="phone" title="24/7 Availability"
-                    description="We understand your need and provide consultation and report 24/7"/>
+                    description="We understand your need and provide consultation and report 24/7"
+                    icon_color="rgb(163, 73, 204)" icon_background_color="rgb(163, 73, 204, 0.2)"/>
+            </div>
+        </div>
+        <div class="section">
+            <SectionHeader heading="Pricing" id="pricing"/>
+            <div class="section-body col-3 pt-3">
+                <PricingComponent title="Basic" :price="1500"
+                    :features="[
+                        {feature: 'Customized Web Development', included: true}, 
+                        {feature: 'Customized UI Design', included: true},
+                        {feature: 'Website Maintenance', included: true},
+                        {feature: 'Web Hosting', included: true},
+                        {feature: 'Search Engine Optimization', included: false},
+                        {feature: 'Analytics Solutions', included: false},
+                        {feature: 'CMS', included: false}]"
+                        color="rgb(26, 163, 232)"/>
+                <PricingComponent title="Standard" :price="3500"
+                :features="[
+                        {feature: 'Customized Web Development', included: true}, 
+                        {feature: 'Customized UI Design', included: true},
+                        {feature: 'Website Maintenance', included: true},
+                        {feature: 'Web Hosting', included: true},
+                        {feature: 'Search Engine Optimization', included: true},
+                        {feature: 'Analytics Solutions', included: true},
+                        {feature: 'CMS', included: false}]"
+                        color="rgb(247, 149, 4)"
+                        :popular="true"/>
+                <PricingComponent title="Premium" :price="8000"
+                :features="[
+                        {feature: 'Customized Web Development', included: true}, 
+                        {feature: 'Customized UI Design', included: true},
+                        {feature: 'Website Maintenance', included: true},
+                        {feature: 'Web Hosting', included: true},
+                        {feature: 'Search Engine Optimization', included: true},
+                        {feature: 'Analytics Solutions', included: true},
+                        {feature: 'CMS', included: true}]"
+                        color="rgb(163, 73, 204)"/>
             </div>
         </div>
     </div>
@@ -65,6 +105,7 @@ import {useScene} from 'vue-scenejs';
 import HorizontalCard from '@/components/HorizontalCard.vue';
 import SectionHeader from '@/components/SectionHeader.vue';
 import ServiceCard from '@/components/ServiceCard.vue';
+import PricingComponent from '@/components/PricingComponent.vue';
 
 
 export default {
@@ -89,7 +130,7 @@ export default {
         load_anim.play();
 
     },
-    components: { HorizontalCard, SectionHeader, ServiceCard }
+    components: { HorizontalCard, SectionHeader, ServiceCard, PricingComponent }
 }
 </script>
 
@@ -100,6 +141,10 @@ export default {
     grid-template-columns: 1.5fr 1fr;
     grid-template-rows: 1fr;
     position: relative;
+}
+
+.pt-3 {
+    padding-top: 4em !important;
 }
 
 .headings-container {
@@ -189,6 +234,10 @@ export default {
         width: 70%;
         transition: all 0.2s linear;
 
+        &.col-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
         &.cards {
             display: flex;
             align-items: center;
@@ -268,6 +317,10 @@ export default {
         }
     }
 
+    .section-body {
+        width: 80% !important;
+    }
+
     .image-container img {
         width: 100%;
         height: 700px;
@@ -304,6 +357,7 @@ export default {
 
     .section-body {
         grid-template-columns: repeat(2, 1fr) !important;
+        width: 90% !important;
     }
 }
 
@@ -319,6 +373,7 @@ export default {
 
     .section-body {
         grid-template-columns: repeat(1, 1fr) !important;
+        width: 100% !important;
     }
 }
 
