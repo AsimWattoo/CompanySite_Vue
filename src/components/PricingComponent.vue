@@ -39,25 +39,27 @@ export default {
     props: ['title', 'price', 'features', 'popular', 'color'],
     components: { FontAwesomeIcon },
     mounted() {
-        let id = `#${this.title}`
-        let scene = useSceneItem({
-            0: {
-                opacity: 0,
-                transform: 'translateY(150px)'
-            },
-            1: {
-                opacity: 1,
-                transform: this.popular ? (window.innerWidth < 810 ? 'translateY(0px)' : 'translateY(-20px)') : 'translateY(0px)'
-            }
-        }, {
-            easing: 'cubic-bezier(.14,.27,.47,1.33)',
-            duration: 0.4,
-            selector: id
-        });
+        window.onresize += () => {
+            let id = `#${this.title}`
+            let scene = useSceneItem({
+                0: {
+                    opacity: 0,
+                    transform: 'translateY(150px)'
+                },
+                1: {
+                    opacity: 1,
+                    transform: this.popular ? (window.innerWidth < 810 ? 'translateY(0px)' : 'translateY(-20px)') : 'translateY(0px)'
+                }
+            }, {
+                easing: 'cubic-bezier(.14,.27,.47,1.33)',
+                duration: 0.4,
+                selector: id
+            });
 
-        inView(id, () => {
-            scene.play();
-        })
+            inView(id, () => {
+                scene.play();
+            })
+        }
     }
 }
 </script>
@@ -182,6 +184,12 @@ export default {
 
     }
 
+}
+
+@media only screen and (max-width: 810px) {
+    .most-popular {
+        transform: translateY(0px);
+    }
 }
 
 </style>
