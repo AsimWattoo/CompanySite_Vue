@@ -62,7 +62,7 @@ export default {
 .section-header {
         overflow: hidden;
         margin: 0px 10px;
-        width: 80%;
+        width: 70%;
         border-radius: 5px;
         position: relative;
 

@@ -31,7 +31,7 @@
 
 <script>
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { useSceneItem } from 'vue-scenejs';
+import { useSceneItem, useScene } from 'vue-scenejs';
 import { inView } from 'motion';
 
 export default {
@@ -39,27 +39,43 @@ export default {
     props: ['title', 'price', 'features', 'popular', 'color'],
     components: { FontAwesomeIcon },
     mounted() {
-        window.onresize += () => {
-            let id = `#${this.title}`
-            let scene = useSceneItem({
-                0: {
-                    opacity: 0,
-                    transform: 'translateY(150px)'
-                },
-                1: {
-                    opacity: 1,
-                    transform: this.popular ? (window.innerWidth < 810 ? 'translateY(0px)' : 'translateY(-20px)') : 'translateY(0px)'
-                }
-            }, {
-                easing: 'cubic-bezier(.14,.27,.47,1.33)',
-                duration: 0.4,
-                selector: id
-            });
 
-            inView(id, () => {
-                scene.play();
+        let id = `#${this.title}`
+        let scene = useSceneItem({
+            0: {
+                opacity: 0,
+                transform: 'translateY(150px)'
+            },
+            1: {
+                opacity: 1,
+                transform: 'translateY(0px)'
+            }
+        }, {
+            easing: 'cubic-bezier(.14,.27,.47,1.33)',
+            duration: 0.4,
+            selector: id
+        });
+
+        let features = document.querySelectorAll(`${id} .feature-item`)
+        let featuresScene = useScene()
+
+        for(let i = 0;i < features.length; i++) {
+            //Creating an item
+            let feature_item_anim = featuresScene.newItem(i);
+            //Setting item properties
+            feature_item_anim.set(0, {'opacity': 0, transform: 'translateX(-150px)'});
+            feature_item_anim.set(1, {'opacity': 1, transform: 'translateX(0px)'});
+            feature_item_anim.setOptions({
+                duration: 0.3,
+                easing: 'ease-in-out',
+                element: features[i],
+                delay: i * 0.07
             })
         }
+        inView(id, () => {
+            scene.play();
+            featuresScene.play();
+        })
     }
 }
 </script>
@@ -67,14 +83,11 @@ export default {
 <style scoped lang="scss">
 @import '@/assets/sass/style.scss';
 
-.most-popular {
-    transform: translateY(-20px);
-}
-
 .pricing-container {
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     padding: 10px;
     border-radius: 10px;
+    overflow: hidden;
 
     &.most-popular {
         border: 0.5px solid v-bind(color)
@@ -184,12 +197,6 @@ export default {
 
     }
 
-}
-
-@media only screen and (max-width: 810px) {
-    .most-popular {
-        transform: translateY(0px);
-    }
 }
 
 </style>

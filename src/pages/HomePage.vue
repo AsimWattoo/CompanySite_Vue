@@ -98,6 +98,7 @@
             </div>
         </div>
     </div>
+    <PageFooter />
 </template>
 
 <script>
@@ -106,6 +107,7 @@ import HorizontalCard from '@/components/HorizontalCard.vue';
 import SectionHeader from '@/components/SectionHeader.vue';
 import ServiceCard from '@/components/ServiceCard.vue';
 import PricingComponent from '@/components/PricingComponent.vue';
+import PageFooter from '@/components/PageFooter.vue';
 
 
 export default {
@@ -130,11 +132,12 @@ export default {
         load_anim.play();
 
     },
-    components: { HorizontalCard, SectionHeader, ServiceCard, PricingComponent }
+    components: { HorizontalCard, SectionHeader, ServiceCard, PricingComponent, PageFooter }
 }
 </script>
 
 <style lang="scss" scoped>
+@import "@/assets/sass/style.scss";
 
 .page-header {
     display: grid;
@@ -167,7 +170,7 @@ export default {
 
     .highlight {
         font-size: 5em !important;
-        color: #40c6b1;
+        color: $color-primary;
     }
 }
 
@@ -319,6 +322,11 @@ export default {
 
     .section-body {
         width: 80% !important;
+
+        &.col-3 {
+            grid-template-columns: repeat(2, 1fr) !important;
+        }
+
     }
 
     .image-container img {
@@ -356,6 +364,11 @@ export default {
     }
 
     .section-body {
+
+        &.col-3 {
+            grid-template-columns: repeat(1, 1fr) !important;
+        }
+
         grid-template-columns: repeat(2, 1fr) !important;
         width: 90% !important;
     }

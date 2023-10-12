@@ -73,6 +73,8 @@ export default {
 
 <style scoped lang="scss">
 
+@import '@/assets/sass/style.scss';
+
 .menu-container {
     padding: 1em 2em;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
@@ -91,8 +93,8 @@ export default {
     justify-content: start;
 
     img {
-        width: 50px;
-        height: 50px;
+        width: 80px;
+        height: 80px;
     }
 
     .heading {
@@ -135,11 +137,22 @@ export default {
         position: relative;
 
         &.active {
-            color: #40c6b1;
+            color: $color-primary-hover;
+
+            &.active::before {
+                content: '';
+                width: 30%;
+                height: 3px;
+                background-color: $color-primary-hover;
+                position: absolute;
+                top: 85%;
+                left: 50%;
+                transform: translateX(-50%);
+            }
         }
 
         &.outline {
-            border: 2px solid #51fadf;
+            border: 2px solid $color-primary;
             border-radius: 10px;
             overflow: hidden;
 
@@ -147,7 +160,7 @@ export default {
                 position: absolute;
                 top: 100%;
                 left: 0%;
-                background-color: #51fadf;
+                background-color: $color-primary;
                 width: 100%;
                 height: 100%;
                 z-index: 1;
@@ -166,7 +179,7 @@ export default {
             top: 98%;
             left: 50%;
             width: 0;
-            background-color: #51fadf;
+            background-color: $color-primary;
             height: 2px;
             border-radius: 10px;
             transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
@@ -179,7 +192,6 @@ export default {
             }
 
             &.outline {
-                color: black;
                 .outline-bg{
                     top: 0%;
                 }
