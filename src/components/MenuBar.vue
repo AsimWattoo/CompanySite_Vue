@@ -48,7 +48,9 @@ export default {
             selectedRoute: 0
         }
     },
-    mounted() {
+    async mounted() {
+        await this.$router.isReady();
+        this.selectedRoute = this.$route.meta.id;
         window.addEventListener('resize', this.window_resized);
         this.adjust_to_window_width();
     },
@@ -78,7 +80,7 @@ export default {
         },
         window_resized() {
             this.adjust_to_window_width();
-        }
+        },
     }
 }
 </script>

@@ -6,12 +6,18 @@ const routes = [
     {
         path: '/',
         component: HomePage,
-        name: 'home'
+        name: 'home',
+        meta: {
+            id: 0
+        }
     },
     {
         path: '/services',
         component: ServicesPage,
-        name: 'services'
+        name: 'services',
+        meta: {
+            id: 1
+        }
     }
 ]
 export const router = createRouter({
