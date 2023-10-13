@@ -1,112 +1,156 @@
 <template>
-    <div class="card" :id="id">
-        <div class="main-display">
-            <div class="icon" :style="`background-color: ${this.icon_background_color}; color: ${this.icon_color};`">
-                <FontAwesomeIcon :icon="icon"/>
+    <div class="service">
+        <div class="image">
+            <img src="@/assets/images/custom-web.jpeg"/>
+        </div>
+        <div class="header">
+            {{ title }}
+        </div>
+        <div class="rating">
+            <div class="avgRating">
+                {{ avgRating }}
             </div>
-            <div class="heading">
-                {{ this.title }}
+            <div v-for="(rating, index) in this.ratings" :key="index">
+                <FontAwesomeIcon icon="star" :class="{'empty': rating == 0}"/>
+            </div>
+            <div class="orders">
+                ({{ orders }})
             </div>
         </div>
         <div class="description">
-            {{ this.description }}
+            {{ description }}
+        </div>
+        <div class="info-container">
+            <div class="info-item">
+                PKR <strong>{{ price?.toLocaleString() }}</strong>
+            </div>
+            <div class="info-container">
+                -
+            </div>
+            <div class="info-item">
+                <strong>{{ time }} {{ timeUnit }}</strong>
+            </div>
+        </div>
+        <div class="btn-container">
+            <div class="btn-primary">
+                Place Order
+            </div>
         </div>
     </div>
 </template>
 
 <script>
-
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import {inView} from 'motion';
-import {useSceneItem} from 'vue-scenejs'
+
 
 export default {
     name: 'ServiceCard',
-    props: ['id', 'icon', 'title', 'description', 'icon_color', 'icon_background_color'],
-    mounted() {
-        let cardId = `#${this.id}`;
-        let enter_scene = useSceneItem({
-            0: {
-                transform: 'translateY(150px)',
-                opacity: 0,
-            },
-            1: {
-                transform: 'translateY(0px)',
-                opacity: 1
-            }
-        }, {
-            duration: 0.4,
-            selector: cardId,
-            easing: 'linear'
-        });
-        inView(cardId, () => {
-            enter_scene.play();
-        });
+    components: { FontAwesomeIcon },
+    props: ['title', 'description', 'price', 'time', 'orders', 'avgRating', 'timeUnit'],
+    data() {
+        return {
+            ratings: []
+        }
     },
-    components: { FontAwesomeIcon }
+    mounted() {
+        for(let i = 1; i <= 5; i++) {
+            if(i <= this.avgRating)
+                this.ratings.push(1)
+            else
+                this.ratings.push(0)
+        }
+    }
 }
+
 </script>
 
-<style lang="scss" scoped>
+<style scoped lang="scss">
 @import "@/assets/sass/style.scss";
 
-.card {
+
+.service {
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    padding: 1em 1.5em;
+    max-width: 300px;
     border-radius: 5px;
-    padding: 2em 1em;
-    cursor: pointer;
-    transition: all 0.2s linear;
-    opacity: 0;
-    margin: 50px 0px 0px 0px;
-    background-color: transparent;
-    transform: translateY(150px);
-    position: relative;
 
-    .main-display {
-        background-color: white;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        transition: all 0.3s linear;
-    }
-
-    .description {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.2rem;
-        font-weight: 300;
-        width: 100%;
-        padding: 10px;
-        box-sizing: border-box;
-        transition: all 0.3s linear;
-    }
-
-
-
-    .icon {
-        transform: translateY(-60px);
-        width: 70px;
-        height: 70px;
-        border-radius: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        svg {
-            font-size: 2rem;
-            transition: all 0.2s linear;
+    .image {
+        margin: 0.5em 0;
+        img {
+            height: 200px;
+            border-radius: 3px;
+            color: $color-primary;
         }
     }
 
-    .heading {
-        margin-top: 10px;
-        font-size: 1.2rem;
+    .header {
+        font-size: 1.3rem;
         font-weight: 700;
-        transition: all 0.2s linear;
+        margin: 0 0 0.5em 0;
+    }
+
+    .rating {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .avgRating {
+            margin: 0 0.2em;
+            color: orange;
+        }
+
+        svg {
+            color: orange;
+            &.empty {
+                color: $color-dark;
+            }
+        }
+        .orders {
+            margin: 0 0.5em;
+            color: $color-dark-gray;
+        }
+    }
+
+    .description {
+        font-weight: 300;
+        font-size: 1rem;
+        margin: 0.5em 0;
+        color: $color-dark-gray;
+    }
+
+    .info-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin: 0.5em 0;
+
+        .info-item {
+            margin: 0 0.2em;
+            font-size: 0.8rem;  
+            strong {
+                font-size: 1rem;
+            }
+        }
+    }
+
+    .btn-container {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        margin: 0.5em 0;
+        justify-content: center;
+        .btn-primary {
+            padding: 0.5em 1.5em;
+            border: 1px solid $color-primary;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            &:hover {
+                background-color: $color-primary;
+                color: white;
+                transform: scale(1.05, 1.05);
+            }
+        }
     }
 }
-
-
 </style>

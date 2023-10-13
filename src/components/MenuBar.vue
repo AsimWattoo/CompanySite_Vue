@@ -5,26 +5,29 @@
             <p class="heading">Axontick</p>
         </div>
         <div class="menu-items-container">
-            <a class="menu-button" @click="toggle_menu" v-if="menuButtonShown">
+            <a class="menu-button" @click="toggle_menu" v-if="menuButtonShown && !menuExpanded">
                 <font-awesome-icon icon="bars" />
             </a>
+            <a class="menu-button" @click="toggle_menu" v-if="menuButtonShown && menuExpanded">
+                <font-awesome-icon icon="times" />
+            </a>
             <div class="menu-items" :class="{'expand-anim': menuExpanded, 'collapse-anim': !menuExpanded}">
-                <div class="menu-item active">
+                <div class="menu-item" :class="{'active': selectedRoute == 0}" @click="() => navigate_to(0)">
                     Home
                 </div>
-                <div class="menu-item">
+                <div class="menu-item" :class="{'active': selectedRoute == 1}" @click="() => navigate_to(1)">
                     Services
                 </div>
-                <div class="menu-item">
+                <div class="menu-item" :class="{'active': selectedRoute == 2}" @click="() => navigate_to(2)">
                     Pricing
                 </div>
-                <div class="menu-item">
+                <div class="menu-item" :class="{'active': selectedRoute == 3}" @click="() => navigate_to(3)">
                     Products
                 </div>
-                <div class="menu-item">
+                <div class="menu-item" :class="{'active': selectedRoute == 4}" @click="() => navigate_to(4)">
                     About Us
                 </div>
-                <div class="menu-item outline">
+                <div class="menu-item outline" :class="{'active': selectedRoute == 5}" @click="() => navigate_to(5)">
                     <div class="outline-bg"></div>
                     <div class="text">
                         Contact Us
@@ -41,7 +44,8 @@ export default {
     data() {
         return {
             menuExpanded: true,
-            menuButtonShown: false
+            menuButtonShown: false,
+            selectedRoute: 0
         }
     },
     mounted() {
@@ -59,6 +63,14 @@ export default {
             {
                 this.menuExpanded = true;
                 this.menuButtonShown = false;
+            }
+        },
+        navigate_to(route) {
+            this.selectedRoute = route;
+            if(route == 0) {
+                this.$router.push('/');
+            } else if (route == 1) {
+                this.$router.push('services');
             }
         },
         toggle_menu() {
@@ -113,7 +125,7 @@ export default {
 }
 
 .menu-button {
-    color: white;
+    color: black;
     font-size: 25px;
     height: auto;
     margin-right: 0.5em;
@@ -131,7 +143,7 @@ export default {
         padding: 8px 15px;
         border-radius: 5px;
         cursor: pointer;
-        color: white;
+        color: black;
         background-color: transparent;
         transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
         position: relative;
@@ -145,7 +157,7 @@ export default {
                 height: 3px;
                 background-color: $color-primary-hover;
                 position: absolute;
-                top: 85%;
+                top: 98%;
                 left: 50%;
                 transform: translateX(-50%);
             }
@@ -165,6 +177,13 @@ export default {
                 height: 100%;
                 z-index: 1;
                 transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+            }
+
+            &.active {
+                color: white;
+                .outline-bg {
+                    top: 0% !important;
+                }
             }
 
             .text {
@@ -192,6 +211,7 @@ export default {
             }
 
             &.outline {
+                color: white;
                 .outline-bg{
                     top: 0%;
                 }
@@ -202,11 +222,11 @@ export default {
 
 @keyframes expand {
     from {top: -270px;}
-    to {top: 50px;}
+    to {top: 100px;}
 }
 
 @keyframes collapse {
-    0% {top: 50px;}
+    0% {top: 100px;}
     100% {top: -270px;}
 }
 
@@ -216,8 +236,14 @@ export default {
         padding: 0.6em 0.5em;
 
         .heading {
-            color: white;
+            color: black;
             font-size: 1.8rem;
+        }
+
+        .menu-items {
+            .menu-item {
+                color: white;
+            }
         }
 
     }

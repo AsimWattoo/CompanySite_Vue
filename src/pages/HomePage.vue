@@ -47,16 +47,16 @@
         <div class="section">
             <SectionHeader heading="Why Us?" id="why-us"/>
             <div class="section-body">
-                <ServiceCard id="s1" title="Team of Experienced Professionals" icon="people-group"
+                <InfoCard id="s1" title="Team of Experienced Professionals" icon="people-group"
                     description="We have experienced and dedicated professionals with over 500 hours of development experience"
                     icon_color="#40c6b1" icon_background_color="rgb(64, 198, 177, 0.2)"/>
-                <ServiceCard id="s2" icon="clock" title="On Time Delivery"
+                <InfoCard id="s2" icon="clock" title="On Time Delivery"
                     description="Over 90% of our projects are delivered on time as we value your time and money"
                     icon_color="rgb(247, 180, 0)" icon_background_color="rgb(247, 180, 0, 0.2)"/>
-                <ServiceCard id="s3" icon="face-smile" title="50+ Happy Customers"
+                <InfoCard id="s3" icon="face-smile" title="50+ Happy Customers"
                     description="We have over 50+ happy customers from multiple countries"
                     icon_color="#32cd32" icon_background_color="rgb(50, 205, 50, 0.2)"/>
-                <ServiceCard id="s4" icon="phone" title="24/7 Availability"
+                <InfoCard id="s4" icon="phone" title="24/7 Availability"
                     description="We understand your need and provide consultation and report 24/7"
                     icon_color="rgb(163, 73, 204)" icon_background_color="rgb(163, 73, 204, 0.2)"/>
             </div>
@@ -105,7 +105,7 @@
 import {useScene} from 'vue-scenejs';
 import HorizontalCard from '@/components/HorizontalCard.vue';
 import SectionHeader from '@/components/SectionHeader.vue';
-import ServiceCard from '@/components/ServiceCard.vue';
+import InfoCard from '@/components/InfoCard.vue';
 import PricingComponent from '@/components/PricingComponent.vue';
 import PageFooter from '@/components/PageFooter.vue';
 
@@ -117,10 +117,10 @@ export default {
         let load_anim = useScene({
             '.image-container > img': {
                 0: {
-                    top: '-700px'
+                    right: '-700px'
                 },
                 1: {
-                    top: '-100px'
+                    right: '0px'
                 }
             }
         }, {
@@ -132,7 +132,7 @@ export default {
         load_anim.play();
 
     },
-    components: { HorizontalCard, SectionHeader, ServiceCard, PricingComponent, PageFooter }
+    components: { HorizontalCard, SectionHeader, InfoCard, PricingComponent, PageFooter }
 }
 </script>
 
@@ -144,6 +144,7 @@ export default {
     grid-template-columns: 1.5fr 1fr;
     grid-template-rows: 1fr;
     position: relative;
+    overflow: hidden;
 }
 
 .pt-3 {
@@ -267,15 +268,16 @@ export default {
 .image-container {
     display: flex;
     justify-content: end;
+    overflow: hidden;
 }
 
 .image-container img{
     height: 750px;
     width: 650px;
-    top: -100px;
+    top: 0px;
     border-radius: 0 0 0 75px;
-    position: absolute;
     z-index: -2;
+    position: absolute;
 }
 
 @media only screen and (max-width: 1000px) {
