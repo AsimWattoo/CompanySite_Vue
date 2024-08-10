@@ -2,7 +2,7 @@
     <div class="menu-container">
         <div class="logo">
             <img src="../assets/images/logo.png" alt="logo"/>
-            <p class="heading">Axontick</p>
+            <p class="heading">Company Site</p>
         </div>
         <div class="menu-items-container">
             <a class="menu-button" @click="toggle_menu" v-if="menuButtonShown && !menuExpanded">
