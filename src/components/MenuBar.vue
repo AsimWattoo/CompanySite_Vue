@@ -113,9 +113,10 @@ export default {
 
     .heading {
         color: black;
-        font-size: 2.3rem;
+        font-size: 1.5rem;
         margin: 0px 0.3em;
         font-weight: 500;
+        text-wrap: nowrap;
     }
 }
 
